@@ -1,6 +1,7 @@
 # javascript
 
 # Why Can’t I Use = to Copy an Array?
+https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
 
 > Because arrays in JS are reference values, so when you try to copy it using the = it will only copy the reference to the original array and not the value of the array. To create a real copy of an array, you need to copy over the value of the array under a new value variable. That way this new array does not reference to the old array address in memory.
 
@@ -17,9 +18,10 @@ console.log(sheeps === cloneSheeps);
 // false --> it's pointing to a new memory space
 ```
 
-https://www.samanthaming.com/tidbits/35-es6-way-to-clone-an-array/
+
 
 # Best way to copy an array:
+https://stackoverflow.com/a/48219524/2897115
 ```
 let original = [
   [1, 2],
@@ -56,6 +58,7 @@ output
 
 
 # deep copy vs shallow copy and spread operator to clone an nested object
+https://stackoverflow.com/a/61422332/2897115
 
 So, for this problem, you have to understand what is the `shallow` copy and `deep` copy.
 
