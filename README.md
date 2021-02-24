@@ -241,3 +241,61 @@ If we want to sort the numbers in descending order, this time we need to subtrac
 const numbers = [3, 23, 12]
 numbers.sort(function(a, b){return b - a}); // --> 23, 12, 3
 ```
+
+
+# javscript filter
+
+https://www.digitalocean.com/community/tutorials/js-filter-array-method
+
+The `filter()` Array method creates a new array with elements that fall under a given criteria from an existing array:
+
+```
+var numbers = [1, 3, 6, 8, 11];
+
+var lucky = numbers.filter(function(number) {
+  return number > 7;
+});
+
+// [ 8, 11 ]
+```
+
+The example above takes the `numbers` array and returns a new filtered array with only those values that are greater than seven.
+
+## Filter syntax
+```
+var newArray = array.filter(function(item) {
+  return condition;
+});
+``` 
+
+The item argument is a reference to the current element in the array as filter() checks it against the condition. This is useful for accessing properties, in the case of objects.
+
+
+# findIndex
+
+The arr.findIndex() method used to return the index of the first element in a given array that satisfies the provided testing function. Otherwise, -1 is returned.
+
+It does not execute the method once it finds an element satisfying the testing method.
+It does not change the original array.
+
+```js
+<script> 
+    // input array contain some elements. 
+    var array = [-10, -0.20, 0.30, -40, -50]; 
+  
+    // function (return element > 0). 
+    var found = array.findIndex(function (element) { 
+        return element > 0; 
+    }); 
+  
+    // Printing desired values. 
+    document.write(found); 
+</script>
+```
+
+```
+Output:
+2
+```
+If the current item passes the condition, it gets sent to the new array.
+
