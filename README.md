@@ -227,4 +227,17 @@ The sort method, fortunately, can sort negative, zero, and positive values in th
 - If the result is negative, a is sorted before b.
 - If the result is positive, b is sorted before a.
 - If the result is 0, nothing changes.
+
 All we need to is using the compare function inside the sort( ) method:
+
+```
+const numbers = [3, 23, 12];
+numbers.sort(function(a, b){return a - b}); // --> 3, 12, 23
+```
+
+If we want to sort the numbers in descending order, this time we need to subtract the second parameter (b) from the first one (a):
+
+```
+const numbers = [3, 23, 12]
+numbers.sort(function(a, b){return b - a}); // --> 23, 12, 3
+```
