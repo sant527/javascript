@@ -27,7 +27,7 @@ let original = [
   [1, 2],
   [3, 4]
 ];
-let cloned = JSON.parse(JSON.stringify(original)); // this will copy everything from original 
+let cloned = c; // this will copy everything from original 
 original[0][0] = -1;
 console.log(cloned); // the cloned array element value changes too
 console.log(original);
@@ -145,3 +145,47 @@ Another approach is to assign the `oldObj` properties one by one into `newObj`'s
 <!-- end snippet -->
 
 There are some libraries available for deep-copy. You can use them too.
+
+
+# when to use spread operator {...orignal}/\[...original\] instead of JSON.parse(JSON.stringify(original))
+
+```js
+          axios.get("https://someapi/rest/",{
+              params: {
+                ...params_general,
+                ...params_date
+              }
+            })
+            .then((response) => {
+              console.log(response)
+
+              //There are two ways to copy 
+              // Method 1
+              const resp1 = {...response})
+              //Use this when we are not changing any nested objects OR even we
+              //change nested objects we dont need the response variable anymore
+              //in the code
+              // Eg:
+              resp1["data"]["photos"] = ""
+              console.log(response.["data"]["photos"])
+              // this will show ""
+
+              
+              // Method 2
+              const resp2 = setResponse(JSON.parse(JSON.stringify(response))) 
+              //Use this when we change any nested objects like 
+               // and also want the response object not to change
+              // since we want to use again the response 
+              //somewhere in the code
+              // Eg:
+              resp2["data"]["photos"] = ""
+              console.log(response.["data"]["photos"])
+              // this will not show ""
+
+              
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        }
+```
