@@ -189,3 +189,42 @@ There are some libraries available for deep-copy. You can use them too.
             });
         }
 ```
+
+
+# javascript sort function
+
+https://www.freecodecamp.org/news/javascript-array-sort-tutorial-how-to-use-js-sort-methods-with-code-examples/
+
+When we use the sort( ) method, elements will be sorted in ascending order (A to Z) by default:
+
+```
+const teams = ['Real Madrid', 'Manchester Utd', 'Bayern Munich', 'Juventus'];
+
+teams.sort(); 
+// ['Bayern Munich', 'Juventus', 'Manchester Utd', 'Real Madrid']
+
+teams.reverse();
+// ['Real Madrid', 'Manchester Utd', 'Juventus', 'Bayern Munich']
+```
+
+It also sorts numbers alphabetically instead of numerically
+
+```
+const numbers = [3, 23, 12];
+
+numbers.sort(); // --> 12, 23, 3
+```
+like 1, 2, 3 as alphabetical order
+
+## Sort number using the compare function
+
+```
+function(a, b) {return a - b}
+```
+
+The sort method, fortunately, can sort negative, zero, and positive values in the correct order. When the sort( ) method compares two values, it sends the values to our compare function and sorts the values according to the returned value.
+
+- If the result is negative, a is sorted before b.
+- If the result is positive, b is sorted before a.
+- If the result is 0, nothing changes.
+All we need to is using the compare function inside the sort( ) method:
