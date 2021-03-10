@@ -299,3 +299,15 @@ Output:
 ```
 If the current item passes the condition, it gets sent to the new array.
 
+
+
+# boostrap4 toast disappears very quickly even after setting data-delay=5000
+
+answer
+
+https://github.com/twbs/bootstrap/issues/28164#issuecomment-560694369
+
+                    $("#liveAlertToast").toast('dispose')
+                    $("#liveAlertToastContent").html(err.message);
+                    $("#liveAlertToast").toast('show')
+
