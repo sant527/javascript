@@ -353,3 +353,67 @@ For more context, some incomplete discussion of the changes to the handling of t
   [5]: https://github.com/jquery/jquery/blob/1.5.2/test/unit/attributes.js#L157
   [6]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement.reset
   [7]: https://blog.jquery.com/2011/05/03/jquery-16-released/
+
+
+# check if checkbox is checked or not
+
+            if($(this).prop("checked") == true){
+
+                alert("you checked checkbox.");
+
+            }else if($(this).prop("checked") == false){
+
+                alert("you unchecked checkbox.");
+
+            }
+            
+ OR
+
+
+```
+       if ($(this).is(':checked')){
+           msg = "{{__('The set status will be Active again! Are you sure?')}}"
+           a = confirm(msg);
+           if (a){
+               return true;
+           }
+           $(this).prop('checked',false)
+       }
+       else{
+           msg = "{{__('The set will be Inactive! Are you sure?')}}"
+           a = confirm(msg);
+            if (a){
+               return true;
+           }
+           $(this).prop('checked',true);
+       }
+```
+ 
+ 
+ https://stackoverflow.com/questions/16211700/jquery-checkbox-prop-click-preventdefault-behaviour
+ 
+ # how to to decide if a checkbox could be checked/unchecked according to other fields.
+ 
+ Checkboxes are a special case where the `change` event and `click` can replace each-other since the `change event` is also fired by clicking on the checkbox.
+
+That said the only big difference between `click` and `change` is the usability of `.preventDefault()`. The change event is better in cases where the value of the checkbox is being changed using any other methods than clicking.
+
+In this case you choose whichever you prefer. An example would be: [*Fiddle here*](http://jsfiddle.net/Spokey/HPUyv/9/)
+
+
+    $('input[type="checkbox"]').on('change', function () {
+        var ch = $(this), c;
+        if (ch.is(':checked')) {
+            ch.prop('checked', false);
+            c = confirm('Do you?');
+            if (c) {
+                ch.prop('checked', true);
+            }
+        } else {
+            ch.prop('checked', true);
+            c = confirm('Are you sure?');
+            if (c) {
+                ch.prop('checked', false);
+            }
+        }
+    });
