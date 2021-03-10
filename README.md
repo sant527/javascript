@@ -417,3 +417,22 @@ In this case you choose whichever you prefer. An example would be: [*Fiddle here
             }
         }
     });
+
+
+# 'Checkbox change' results in infinite loop
+
+https://stackoverflow.com/a/46886548
+
+Disable bootstrapToggle and change input, then enable it again.
+
+```
+$(".chk").change(function(event) {
+  var id = this.id;
+  var status = !this.checked;
+  $('input:checkbox:not("#' + id + '")').each(function(){
+    $(this).bootstrapToggle('destroy');
+    $(this).prop('checked', status);
+    $(this).bootstrapToggle();
+  });
+});
+```
