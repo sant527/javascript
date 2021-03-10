@@ -302,8 +302,7 @@ If the current item passes the condition, it gets sent to the new array.
 
 
 # boostrap4 toast disappears very quickly even after setting data-delay=5000
-
-answer
+https://stackoverflow.com/a/426276
 
 https://github.com/twbs/bootstrap/issues/28164#issuecomment-560694369
 
@@ -311,3 +310,46 @@ https://github.com/twbs/bootstrap/issues/28164#issuecomment-560694369
                     $("#liveAlertToastContent").html(err.message);
                     $("#liveAlertToast").toast('show')
 
+
+
+
+# prop vs attr vs dom checkbox
+
+Modern jQuery
+----
+
+Use [`.prop()`][1]:
+
+    $('.myCheckbox').prop('checked', true);
+    $('.myCheckbox').prop('checked', false);
+
+DOM API
+----
+
+If you're working with just one element, you can always just access the underlying [`HTMLInputElement`][2] and modify its [`.checked`][3] property:
+
+    $('.myCheckbox')[0].checked = true;
+    $('.myCheckbox')[0].checked = false;
+
+The benefit to using the `.prop()` and `.attr()` methods instead of this is that they will operate on all matched elements.
+
+jQuery 1.5.x and below
+----
+
+The `.prop()` method is not available, so you need to use [`.attr()`][4].
+
+    $('.myCheckbox').attr('checked', true);
+    $('.myCheckbox').attr('checked', false);
+
+Note that this is [the approach used by jQuery's unit tests prior to version 1.6][5] and is preferable to using `$('.myCheckbox').removeAttr('checked');` since the latter will, if the box was initially checked, change the behaviour of a call to [`.reset()`][6] on any form that contains it – a subtle but probably unwelcome behaviour change.
+
+For more context, some incomplete discussion of the changes to the handling of the `checked` attribute/property in the transition from 1.5.x to 1.6 can be found in the [version 1.6 release notes][7] and the **Attributes vs. Properties** section of the [`.prop()` documentation][1].
+
+
+  [1]: https://api.jquery.com/prop
+  [2]: https://developer.mozilla.org/en/docs/Web/API/HTMLInputElement
+  [3]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#Properties_checkbox_radio
+  [4]: https://api.jquery.com/attr
+  [5]: https://github.com/jquery/jquery/blob/1.5.2/test/unit/attributes.js#L157
+  [6]: https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement.reset
+  [7]: https://blog.jquery.com/2011/05/03/jquery-16-released/
